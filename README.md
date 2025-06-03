@@ -1,13 +1,13 @@
 # Text-Indexer-Analyzer
  Built a high-performance Java application capable of reading and indexing large-scale text files (processing 1 GB in under one minute). The  program uses a custom-designed hash table with linked lists to efficiently store and retrieve word data. It includes a user-friendly graphical  interface that delivers instant search results.
 
-# Data Structure Choice
+## Data Structure Choice
 The data structure used in this project is a hash table with linked lists (separate chaining). This structure was chosen because the hash table provides efficient search complexity—best case O(length of the longest linked list), and worst case O(N)—thanks to the use of keys that facilitate quick access. Linked lists were used for their ease in distributing word characters and for handling collisions through chaining. Since the table can maintain its complexity even with larger files, it was considered the best general option.
 
-# Implementation
+## Implementation
 The hash table is initialized with 777 empty buckets. Each line of the file is read sequentially, converting every word to lowercase. The hashtable.get(word) function checks if the word already exists in the hash table, using a hash function that converts the string to an integer and then uses modulo to determine the bucket. For each word, the incrementCount function acts as a counter to track repeated words in the document, and addLine stores the line number where the word appears in the text file.
 
 For word searches, the hash function provides the index to locate the WordData in the hash table. The displayFileStatistics function iterates through all buckets, using a counter that sums the result of each node’s getCount() method. It also prompts the user to enter a letter and traverses the entire hash table to find all words starting with that character.
 
-# Optimizations
+## Optimizations
 Initially, a tree structure was used to distribute words among buckets, with arrays as leaves. However, it was later determined that an array of linked lists would yield lower algorithmic complexity. Since the project’s goal is to provide word count statistics and more, the structure was switched to a hash table, which, as mentioned, offers lower complexity—especially for large datasets—compared to other structures. The main optimization after building the project’s base was increasing the hash table size to reduce the likelihood of collisions and bring the complexity closer to O(1).
